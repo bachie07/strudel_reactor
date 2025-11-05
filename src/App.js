@@ -67,7 +67,25 @@ const handleD3Data = (event) => {
 
 
     const [songText, setSongText] = useState(stranger_tune) 
+
+    const [isPlaying, setIsPlaying] = useState(false)
+
+    const handlePlay = useCallback(() => {
+
+        if (globalEditor){
+        
+            console.log("globalEditor methods:", globalEditor);
+            console.log("Has setVolume?", typeof globalEditor.setVolume);
+            console.log("repl:", globalEditor.repl);
+
+        globalEditor.evaluate()
+
+        setIsPlaying(true)
+
+        console.log("Playing music")
     }
+
+    },[volume])
 
 
 
