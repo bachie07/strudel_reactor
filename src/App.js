@@ -76,6 +76,8 @@ export default function StrudelDemo() {
 
     const [isPlaying, setIsPlaying] = useState(false)
 
+    const [volume, setVolume] = useState(0.5)
+
     const handlePlay = useCallback(() => {
 
         if (globalEditor){
@@ -138,6 +140,21 @@ export default function StrudelDemo() {
 
     }, [handleProcess, handlePlay])
 
+
+    // Handle text changes
+    const handleTextChange = useCallback((e) => {
+        setSongText(e.target.value);
+    }, []);
+
+    const updateVolume = useCallback((e) => {
+
+        const newVolume = parseFloat(e.target.value);
+        console.log("Volume slider moved to:", newVolume); // Add this log
+        setVolume(newVolume)
+
+    }, [])
+
+        
     // When P1 radio changes, auto process and play
     const handleP1Change = useCallback((enabled) => {
 
@@ -186,6 +203,12 @@ useEffect(() => {
 
 }, []);
 
+useEffect(() => {
+
+    if(globalEditor && globalEditor.setVolume){
+        globalEditor.setVolume(volume)
+    }
+}, [volume])
 
 return (
     <div>
