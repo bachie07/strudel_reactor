@@ -20,7 +20,6 @@ const handleD3Data = (event) => {
     console.log(event.detail);
 };
 
-export function SetupButtons() {
 // export function SetupButtons() {
 
 //     document.getElementById('play').addEventListener('click', () => globalEditor.evaluate());
@@ -67,35 +66,15 @@ export function SetupButtons() {
 
 
 
-export function ProcAndPlay() {
-    if (globalEditor != null && globalEditor.repl.state.started == true) {
-        console.log(globalEditor)
-        Proc()
-        globalEditor.evaluate();
-    }
-}
-
-export function Proc() {
-
-    let proc_text = document.getElementById('proc').value
-    let proc_text_replaced = proc_text.replaceAll('<p1_Radio>', ProcessText);
-    ProcessText(proc_text);
-    globalEditor.setCode(proc_text_replaced)
-}
-
-export function ProcessText(match, ...args) {
-
-    let replace = ""
-    if (document.getElementById('flexRadioDefault2').checked) {
-        replace = "_"
     }
 
-    return replace
-}
 
-export default function StrudelDemo() {
 
-const hasRun = useRef(false);
+
+    }
+
+
+
 
 useEffect(() => {
 
@@ -130,9 +109,6 @@ useEffect(() => {
                 },
             });
             
-        document.getElementById('proc').value = stranger_tune
-        SetupButtons()
-        Proc()
     }
 
 }, []);
