@@ -135,8 +135,6 @@ return (
                    
                 </div>
                 <div className="row">
-                    <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                        <div id="editor" />
                     <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                     <ControlButtons onPlay={handlePlay} onStop={handleStop} onProcess={handleProcess} onProcessAndPlay={handleProcessAndPlay}/>
                     <br/>
