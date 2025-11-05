@@ -1,5 +1,6 @@
 import './App.css';
 import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef, useState} from "react";
 import { StrudelMirror } from '@strudel/codemirror';
 import { evalScope } from '@strudel/core';
 import { drawPianoroll } from '@strudel/draw';
