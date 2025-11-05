@@ -68,6 +68,8 @@ const handleD3Data = (event) => {
 
     const [songText, setSongText] = useState(stranger_tune) 
 
+    const [p1Enabled, setP1Enabled] = useState(true);  // true = ON, false = HUSH
+
     const [isPlaying, setIsPlaying] = useState(false)
 
     const handlePlay = useCallback(() => {
@@ -100,7 +102,39 @@ const handleD3Data = (event) => {
     }
     }, [])
     
+    const handleProcess = useCallback(() => {
 
+        console.log("handleProcess() called, current p1Enabled:", p1Enabled);
+
+        console.log("Preprocess clicked!");
+
+
+        let processedText = songText;
+
+        if (p1Enabled) {
+
+            processedText = processedText.replaceAll('<p1_Radio>', '');
+
+        } else {
+
+            processedText = processedText.replaceAll('<p1_Radio>', '_');
+        }
+
+        globalEditor.setCode(processedText);
+
+        console.log("Processed text:", processedText); 
+
+        }, [songText, p1Enabled])
+
+
+    // When P1 radio changes, auto process and play
+    const handleP1Change = useCallback((enabled) => {
+
+        console.log("handleP1Change triggered:", enabled);
+
+        setP1Enabled(enabled);
+        
+    }, []);
 
 
 
