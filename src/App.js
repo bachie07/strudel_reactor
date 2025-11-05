@@ -66,6 +66,7 @@ const handleD3Data = (event) => {
 
 
 
+    const [songText, setSongText] = useState(stranger_tune) 
     }
 
 
@@ -116,16 +117,20 @@ useEffect(() => {
 
 return (
     <div>
-        <h2>Strudel Demo</h2>
         <main>
-
             <div className="container-fluid">
+                <header className="text-center mb-6" style={{marginTop: 20}}>
+                    <h2>Strudel Demo</h2>
+                </header>
+
                 <div className="row">
-                <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                    <ProcessTextArea/>
+                <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <ProcessTextArea textValue={songText} onTextChange={handleTextChange}/>
                     </div>
-                    <div className="col-md-4">
-                    <ControlButtons/>
+
+                    <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto', marginTop: 30, marginBottom: 50 }}> 
+                        <div id="editor" />
+                        <div id="output" />
                     </div>
                    
                 </div>
