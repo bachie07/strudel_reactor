@@ -88,9 +88,18 @@ const handleD3Data = (event) => {
     },[volume])
 
 
+    const handleStop = useCallback(() => {
 
+        if (globalEditor){
 
+        globalEditor.stop()
+
+        setIsPlaying(false)
+
+        console.log("Stopping music")
     }
+    }, [])
+    
 
 
 
