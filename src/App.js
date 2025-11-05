@@ -68,7 +68,9 @@ const handleD3Data = (event) => {
 //     return replace
 // }
 
+export default function StrudelDemo() {
 
+    const hasRun = useRef(false);
 
     const [songText, setSongText] = useState(stranger_tune) 
 
