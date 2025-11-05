@@ -126,6 +126,13 @@ const handleD3Data = (event) => {
 
         }, [songText, p1Enabled])
 
+    
+    const handleProcessAndPlay = useCallback(() => {
+
+        handleProcess()
+        handlePlay()
+
+    }, [handleProcess, handlePlay])
 
     // When P1 radio changes, auto process and play
     const handleP1Change = useCallback((enabled) => {
