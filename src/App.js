@@ -137,15 +137,20 @@ return (
                 <div className="row">
                     <div className="col-md-8" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
                         <div id="editor" />
-                        <div id="output" />
+                    <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
+                    <ControlButtons onPlay={handlePlay} onStop={handleStop} onProcess={handleProcess} onProcessAndPlay={handleProcessAndPlay}/>
+                    <br/>
+                    <VolumeControl volume={volume} updateVolume={updateVolume}/>
+                    <PreprocessorControls p1Enabled={p1Enabled} onP1Change={handleP1Change}/>
+                    <TempoSelector/>
+                    <ChannelSelector/>
+
                     </div>
-                    <PreprocessorControls/>
                 </div>
             </div>
             <canvas id="roll"></canvas>
         </main >
     </div >
 );
-
 
 }
