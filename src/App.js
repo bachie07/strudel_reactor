@@ -78,6 +78,8 @@ export default function StrudelDemo() {
 
     const [volume, setVolume] = useState(0.5)
 
+    const [tempo, setTempo] = useState(140)
+
     const handlePlay = useCallback(() => {
 
         if (globalEditor){
