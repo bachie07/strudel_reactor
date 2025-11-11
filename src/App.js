@@ -186,6 +186,7 @@ export default function StrudelDemo() {
 
 
 
+
 useEffect(() => {
 
     if (!hasRun.current) {
@@ -232,10 +233,16 @@ useEffect(() => {
 }, [volume, isPlaying]); // Now depends on volume AND isPlaying
 
 
-    if(globalEditor && globalEditor.setVolume){
-        globalEditor.setVolume(volume)
+useEffect(() => {
+    if (isPlaying && globalEditor) {
+        console.log(`Reactive tempo change: ${tempo}`);
+        // Re-evaluate with new tempo
+        const codeWithTempo = songText.replace(/setcps\([^)]*\)/, `setcps(${tempo}/60/4)`);
+        globalEditor.setCode(codeWithTempo);
+        globalEditor.evaluate();
     }
-}, [volume])
+}, [tempo, isPlaying]);
+
 
 return (
     <div>
@@ -262,7 +269,7 @@ return (
                     <br/>
                     <VolumeControl volume={volume} updateVolume={updateVolume}/>
                     <PreprocessorControls p1Enabled={p1Enabled} onP1Change={handleP1Change}/>
-                    <TempoSelector/>
+                    <TempoSelector tempo={tempo} updateTempo={updateTempo}/>
                     <ChannelSelector/>
 
                     </div>
