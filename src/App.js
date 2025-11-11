@@ -81,6 +81,9 @@ export default function StrudelDemo() {
     const handlePlay = useCallback(() => {
 
         if (globalEditor){
+
+              // Set the code
+            globalEditor.setCode(songText);
         
             console.log("globalEditor methods:", globalEditor);
             console.log("Has setVolume?", typeof globalEditor.setVolume);
@@ -93,7 +96,7 @@ export default function StrudelDemo() {
         console.log("Playing music")
     }
 
-    },[volume])
+    },[songText, volume])
 
 
     const handleStop = useCallback(() => {
@@ -145,6 +148,7 @@ export default function StrudelDemo() {
     const handleTextChange = useCallback((e) => {
         setSongText(e.target.value);
     }, []);
+
 
     const updateVolume = useCallback((e) => {
 
