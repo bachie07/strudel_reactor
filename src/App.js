@@ -84,13 +84,16 @@ export default function StrudelDemo() {
 
         if (globalEditor){
 
-              // Set the code
+            // Set the code
             globalEditor.setCode(songText);
         
             console.log("globalEditor methods:", globalEditor);
             console.log("Has setVolume?", typeof globalEditor.setVolume);
             console.log("repl:", globalEditor.repl);
 
+        const codeWithTempo = songText.replace(/setcps\([^)]*\)/, `setcps(${tempo}/60/4)`);
+        globalEditor.setCode(codeWithTempo);
+        
         globalEditor.evaluate()
 
         setIsPlaying(true)
@@ -112,7 +115,7 @@ export default function StrudelDemo() {
         console.log("Stopping music")
     }
     }, [])
-    
+
     const handleProcess = useCallback(() => {
 
         console.log("handleProcess() called, current p1Enabled:", p1Enabled);
@@ -131,9 +134,13 @@ export default function StrudelDemo() {
             processedText = processedText.replaceAll('<p1_Radio>', '_');
         }
 
+        
+
         globalEditor.setCode(processedText);
 
+
         console.log("Processed text:", processedText); 
+
 
         }, [songText, p1Enabled])
 
@@ -159,6 +166,13 @@ export default function StrudelDemo() {
         setVolume(newVolume)
 
     }, [])
+
+    const updateTempo = useCallback((e) => {
+
+        const newTempo = parseFloat(e.target.value);
+        setTempo(newTempo);
+
+    })
 
         
     // When P1 radio changes, auto process and play
