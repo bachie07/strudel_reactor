@@ -208,6 +208,13 @@ useEffect(() => {
 }, []);
 
 useEffect(() => {
+    // Only attempt to change the volume if the music is currently playing
+    if (isPlaying && globalEditor && typeof globalEditor.setVolume === 'function') {
+        console.log(`Reactive volume change: ${volume}`);
+        globalEditor.setVolume(volume);
+    }
+}, [volume, isPlaying]); // Now depends on volume AND isPlaying
+
 
     if(globalEditor && globalEditor.setVolume){
         globalEditor.setVolume(volume)
