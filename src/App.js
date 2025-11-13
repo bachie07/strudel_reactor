@@ -70,6 +70,8 @@ export default function StrudelDemo() {
 
     const hasRun = useRef(false);
 
+    const tempoTimeoutRef = useRef(null)
+
     const [songText, setSongText] = useState(stranger_tune) 
 
     const [p1Enabled, setP1Enabled] = useState(true);  // true = ON, false = HUSH
@@ -235,13 +237,23 @@ useEffect(() => {
 
 useEffect(() => {
     if (isPlaying && globalEditor) {
-        console.log(`Reactive tempo change: ${tempo}`);
-        // Re-evaluate with new tempo
-        const codeWithTempo = songText.replace(/setcps\([^)]*\)/, `setcps(${tempo}/60/4)`);
-        globalEditor.setCode(codeWithTempo);
-        globalEditor.evaluate();
+
+        tempoTimeoutRef.current = setTimeout(() => {
+
+            console.log(`Reactive tempo change: ${tempo}`);
+            // Re-evaluate with new tempo
+            const codeWithTempo = songText.replace(/setcps\([^)]*\)/, `setcps(${tempo}/60/4)`);
+            globalEditor.setCode(codeWithTempo);
+            globalEditor.evaluate();
+        }, 300)
+
+        return () => {
+            if (tempoTimeoutRef.current) {
+                clearTimeout(tempoTimeoutRef.current);
+            }
+        };
     }
-}, [tempo, isPlaying]);
+}, [tempo, isPlaying, songText]);
 
 
 return (
