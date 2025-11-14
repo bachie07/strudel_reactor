@@ -11,3 +11,242 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+/* App.css */
+
+body {
+  background: linear-gradient(135deg, #0a0e27 0%, #1a1a2e 50%, #16213e 100%);
+  min-height: 100vh;
+  color: #e0e0e0;
+  font-family: 'Courier New', monospace;
+}
+
+.container-fluid {
+  background: rgba(10, 14, 39, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 255, 255, 0.1);
+}
+
+header h2 {
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5),
+               0 0 20px rgba(0, 255, 136, 0.3);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Strudel Editor Styling */
+#editor {
+  background: #0d1117;
+  border: 2px solid #30363d;
+  border-radius: 8px;
+  padding: 10px;
+  box-shadow: 0 4px 16px rgba(0, 255, 255, 0.2);
+}
+
+#editor .cm-editor {
+  background: #0d1117 !important;
+}
+
+#editor .cm-content {
+  color: #c9d1d9 !important;
+  font-family: 'Courier New', monospace;
+}
+
+/* Textarea Styling */
+textarea {
+  background: #0d1117 !important;
+  border: 2px solid #30363d !important;
+  border-radius: 8px !important;
+  color: #c9d1d9 !important;
+  font-family: 'Courier New', monospace !important;
+  padding: 15px !important;
+  box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+textarea:focus {
+  border-color: #00ff88 !important;
+  outline: none !important;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.3) !important;
+}
+
+/* Button Styling */
+.btn-primary {
+  background: linear-gradient(135deg, #00ff88, #00d4ff);
+  border: none;
+  color: #0a0e27;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 255, 136, 0.5);
+  background: linear-gradient(135deg, #00d4ff, #00ff88);
+}
+
+.btn-danger {
+  background: linear-gradient(135deg, #ff0055, #ff006e);
+  border: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 85, 0.5);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c63ff, #5a52d5);
+  border: none;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(108, 99, 255, 0.5);
+}
+
+/* Form Controls */
+.form-check-input {
+  background-color: #30363d;
+  border-color: #30363d;
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #00ff88;
+  border-color: #00ff88;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.form-check-label {
+  color: #e0e0e0;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+/* Range Sliders (Volume & Tempo) */
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 8px;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #30363d 0%, #00ff88 100%);
+  outline: none;
+  margin: 10px 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00ff88;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+  transition: all 0.3s ease;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  box-shadow: 0 0 15px rgba(0, 255, 136, 1);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #00ff88;
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+  border: none;
+}
+
+/* Canvas Styling */
+#roll {
+  border: 2px solid #00ff88;
+  border-radius: 8px;
+  margin-top: 20px;
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.3);
+  background: #0d1117;
+}
+
+/* Section Headers */
+h5 {
+  color: #00d4ff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0d1117;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00ff88, #00d4ff);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00d4ff, #00ff88);
+}
+
+/* Glow effect for active elements */
+.active-glow {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.8);
+  }
+}
+
+/* Row spacing */
+.row {
+  margin-bottom: 20px;
+}
+
+.col-md-6 {
+  padding: 15px;
+}
