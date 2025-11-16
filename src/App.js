@@ -32,6 +32,13 @@ export default function StrudelDemo() {
 
     const [songText, setSongText] = useState(stranger_tune) 
 
+     //channelsEnabled object storing state of each instrument
+    const [channelsEnabled, setChannelsEnabled] = useState({
+            bassline: true,
+            main_arp: true,
+            drums: true,
+            drums2: true
+        });
 
     const [isPlaying, setIsPlaying] = useState(false)
 
@@ -46,19 +53,27 @@ export default function StrudelDemo() {
 
         if (globalEditor){
 
+            const processedCode = preprocessSong(songText, {
+                channelsEnabled,
+                tempo,
+                volume
+            });
+
             // Set the code
-            globalEditor.setCode(songText);
+            globalEditor.setCode(processedCode);
         
             console.log("globalEditor methods:", globalEditor);
             console.log("Has setVolume?", typeof globalEditor.setVolume);
             console.log("repl:", globalEditor.repl);
 
+            globalEditor.evaluate()
 
-        setIsPlaying(true)
+            setIsPlaying(true)
+
 
     }
 
-    },[songText, volume])
+    },[songText, channelsEnabled, tempo, volume])
 
 
     const handleStop = useCallback(() => {
@@ -97,6 +112,11 @@ export default function StrudelDemo() {
     })
 
 
+    const handleChannelChange = useCallback((channelName, enabled) => { // change instrument state to true to onChange called 
+        setChannelsEnabled(prev => ({
+            ...prev,
+            [channelName]: enabled
+        }));
     }, []);
 
 
@@ -147,8 +167,13 @@ useEffect(() => {
 
             console.log(`Reactive tempo change: ${tempo}`);
             // Re-evaluate with new tempo
-            const codeWithTempo = songText.replace(/setcps\([^)]*\)/, `setcps(${tempo}/60/4)`);
-            globalEditor.setCode(codeWithTempo);
+            const processedCode = preprocessSong(songText, {
+                channelsEnabled,
+                tempo,
+                volume
+            });
+
+            globalEditor.setCode(processedCode);
             globalEditor.evaluate();
         }, 300)
 
