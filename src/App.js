@@ -53,14 +53,9 @@ export default function StrudelDemo() {
             console.log("Has setVolume?", typeof globalEditor.setVolume);
             console.log("repl:", globalEditor.repl);
 
-        const codeWithTempo = songText.replace(/setcps\([^)]*\)/, `setcps(${tempo}/60/4)`);
-        globalEditor.setCode(codeWithTempo);
-        
-        globalEditor.evaluate()
 
         setIsPlaying(true)
 
-        console.log("Playing music")
     }
 
     },[songText, volume])
@@ -78,42 +73,7 @@ export default function StrudelDemo() {
     }
     }, [])
 
-    const handleProcess = useCallback(() => {
-
-        console.log("handleProcess() called, current p1Enabled:", p1Enabled);
-
-        console.log("Preprocess clicked!");
-
-
-        let processedText = songText;
-
-        if (p1Enabled) {
-
-            processedText = processedText.replaceAll('<p1_Radio>', '');
-
-        } else {
-
-            processedText = processedText.replaceAll('<p1_Radio>', '_');
-        }
-
-        
-
-        globalEditor.setCode(processedText);
-
-
-        console.log("Processed text:", processedText); 
-
-
-        }, [songText, p1Enabled])
-
     
-    const handleProcessAndPlay = useCallback(() => {
-
-        handleProcess()
-        handlePlay()
-
-    }, [handleProcess, handlePlay])
-
 
     // Handle text changes
     const handleTextChange = useCallback((e) => {
@@ -136,14 +96,7 @@ export default function StrudelDemo() {
 
     })
 
-        
-    // When P1 radio changes, auto process and play
-    const handleP1Change = useCallback((enabled) => {
 
-        console.log("handleP1Change triggered:", enabled);
-
-        setP1Enabled(enabled);
-        
     }, []);
 
 
@@ -185,14 +138,6 @@ useEffect(() => {
     }
 
 }, []);
-
-useEffect(() => {
-    // Only attempt to change the volume if the music is currently playing
-    if (isPlaying && globalEditor && typeof globalEditor.setVolume === 'function') {
-        console.log(`Reactive volume change: ${volume}`);
-        globalEditor.setVolume(volume);
-    }
-}, [volume, isPlaying]); // Now depends on volume AND isPlaying
 
 
 useEffect(() => {
