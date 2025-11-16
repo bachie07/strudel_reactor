@@ -34,3 +34,38 @@ export function preprocessSong( songText, {channelsEnabled, tempo, volume }){ //
 
     }
 
+
+    if (volume) {
+        processedText = processedText.replace(
+            /\.(post)?gain\(([0-9.]+)\)/g, 
+            (match, postPrefix, gainValue) => {
+                const originalGain = parseFloat(gainValue);
+                const scaledGain = (originalGain * volume).toFixed(2);
+                const prefix = postPrefix ? 'postgain' : 'gain';
+                return `.${prefix}(${scaledGain})`;
+            }
+        );
+
+        processedText = processedText.replace(
+            /const gain_patterns = \[([\s\S]*?)\]/,
+            (match, arrayContent) => {
+                // Replace simple numbers like "2" with scaled value
+                const scaledContent = arrayContent.replace(
+                    /"(\d+\.?\d*)"/g,
+                    (m, num) => `"${(parseFloat(num) * volume).toFixed(2)}"`
+                );
+                // Replace numbers in patterns like {0.75 2.5}
+                const fullyScaled = scaledContent.replace(
+                    /(\d+\.?\d+)/g,
+                    (m, num) => (parseFloat(num) * volume).toFixed(2)
+                );
+                return `const gain_patterns = [${fullyScaled}]`;
+            }
+        );
+    }
+
+
+    return processedText;
+
+
+}
