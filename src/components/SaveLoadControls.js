@@ -29,3 +29,26 @@ function SaveLoadControls({ currentSettings, onLoadSettings }) {
         reader.readAsText(file);
     };
 
+    return (
+        <div className="mt-3">
+            <h5>Save/Load Settings</h5>
+            <div className="btn-group" role="group">
+                <button className="btn btn-success" onClick={handleSave}>
+                    💾 Save
+                </button>
+                <label className="btn btn-info" htmlFor="load-file">
+                    📁 Load
+                </label>
+                <input
+                    type="file"
+                    id="load-file"
+                    accept=".json"
+                    style={{ display: 'none' }}
+                    onChange={handleLoad}
+                />
+            </div>
+        </div>
+    );
+}
+
+export default SaveLoadControls;
