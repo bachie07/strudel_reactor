@@ -24,3 +24,13 @@ export function preprocessSong( songText, {channelsEnabled, tempo, volume }){ //
         });
     }
 
+
+    if (tempo) {
+
+        processedText = processedText.replace(
+            /setcps\([^)]*\)/, 
+            `setcps(${tempo}/60/4)`
+        );
+
+    }
+
