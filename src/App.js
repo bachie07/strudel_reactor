@@ -70,6 +70,7 @@ export default function StrudelDemo() {
 
             setIsPlaying(true)
 
+            console.log("Playing music")
 
     }
 
@@ -98,6 +99,7 @@ export default function StrudelDemo() {
             globalEditor.setCode(newText);
         }
     }, []);
+
 
 
     const updateVolume = useCallback((e) => {
