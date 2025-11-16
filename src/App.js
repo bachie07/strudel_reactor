@@ -28,17 +28,19 @@ export default function StrudelDemo() {
 
     const hasRun = useRef(false); 
 
-    const tempoTimeoutRef = useRef(null)
+    const tempoTimeoutRef = useRef(null) // useRef storing timeout session
 
     const [songText, setSongText] = useState(stranger_tune) 
 
-    const [p1Enabled, setP1Enabled] = useState(true);  // true = ON, false = HUSH
 
     const [isPlaying, setIsPlaying] = useState(false)
 
     const [volume, setVolume] = useState(0.5)
 
     const [tempo, setTempo] = useState(140)
+
+
+
 
     const handlePlay = useCallback(() => {
 
@@ -196,7 +198,7 @@ useEffect(() => {
 useEffect(() => {
     if (isPlaying && globalEditor) {
 
-        tempoTimeoutRef.current = setTimeout(() => {
+        tempoTimeoutRef.current = setTimeout(() => { // use setTimeOut to manage delay when play
 
             console.log(`Reactive tempo change: ${tempo}`);
             // Re-evaluate with new tempo
@@ -206,12 +208,12 @@ useEffect(() => {
         }, 300)
 
         return () => {
-            if (tempoTimeoutRef.current) {
+            if (tempoTimeoutRef.current) { // clear current ref 
                 clearTimeout(tempoTimeoutRef.current);
             }
         };
     }
-}, [tempo, isPlaying, songText]);
+}, [tempo, isPlaying, songText, channelsEnabled, volume]); // only called when dependancies change 
 
 
 return (
