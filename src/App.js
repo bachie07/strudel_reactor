@@ -16,6 +16,7 @@ import TempoSelector from './components/TempoSelector';
 import VolumeControl from './components/VolumeControl';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import { preprocessSong } from './utils/PreprocessLogic';
+import SaveLoadControls from './components/SaveLoadControls';
 
 let globalEditor = null;
 
@@ -219,6 +220,7 @@ return (
                     <PreprocessorControls   channelsEnabled={channelsEnabled}  onChannelChange={handleChannelChange}/>
                     <TempoSelector tempo={tempo} updateTempo={updateTempo}/>
                     <ChannelSelector/>
+                    <SaveLoadControls/>
 
                     </div>
                 </div>
