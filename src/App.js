@@ -42,7 +42,7 @@ export default function StrudelDemo() {
 
     const [isPlaying, setIsPlaying] = useState(false)
 
-    const [volume, setVolume] = useState(0.5)
+    const [volume, setVolume] = useState(1.0) 
 
     const [tempo, setTempo] = useState(140)
 
@@ -92,7 +92,11 @@ export default function StrudelDemo() {
 
     // Handle text changes
     const handleTextChange = useCallback((e) => {
-        setSongText(e.target.value);
+        const newText = setSongText(e.target.value);
+    
+        if (globalEditor) {
+            globalEditor.setCode(newText);
+        }
     }, []);
 
 
@@ -207,10 +211,10 @@ return (
                 </div>
                 <div className="row">
                     <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                    <ControlButtons onPlay={handlePlay} onStop={handleStop} onProcess={handleProcess} onProcessAndPlay={handleProcessAndPlay}/>
+                    <ControlButtons onPlay={handlePlay} onStop={handleStop}/>
                     <br/>
                     <VolumeControl volume={volume} updateVolume={updateVolume}/>
-                    <PreprocessorControls p1Enabled={p1Enabled} onP1Change={handleP1Change}/>
+                    <PreprocessorControls   channelsEnabled={channelsEnabled}  onChannelChange={handleChannelChange}/>
                     <TempoSelector tempo={tempo} updateTempo={updateTempo}/>
                     <ChannelSelector/>
 
