@@ -17,6 +17,7 @@ import VolumeControl from './components/VolumeControl';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
 import { preprocessSong } from './utils/PreprocessLogic';
 import SaveLoadControls from './components/SaveLoadControls';
+import D3GraphVisualizer from './components/D3Visualiser';
 
 let globalEditor = null;
 
