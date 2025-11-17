@@ -145,6 +145,9 @@ export default function StrudelDemo() {
     }, []);
 
 
+
+
+
 useEffect(() => {
 
     if (!hasRun.current) {
@@ -210,40 +213,69 @@ useEffect(() => {
 
 
 return (
-    <div>
+    <div className="app-container">
         <main>
-            <div className="container-fluid">
-                <header className="text-center mb-6" style={{marginTop: 20}}>
-                    <h2>Strudel Demo</h2>
+            <div className="container-fluid main-container">
+                <header className="app-header">
+                    <h2>Strudel Reactor</h2>
                 </header>
+                
+                <div className="row g-3 main-row">
+                    
+                    {/* Controls & D3 */}
+                    <div className="col-lg-6 left-column">
+                        {/* Controls Section */}
+                        <div className="control-panel p-3 mb-3">
+                            <h5>Controls</h5>
+                            
+                            <ControlButtons onPlay={handlePlay} onStop={handleStop}/>
+                            
+                            <div className="row control-row">
+                                <div className="col-md-6">
+                                    <VolumeControl volume={volume} updateVolume={updateVolume}/>
+                                </div>
+                                <div className="col-md-6">
+                                    <TempoSelector tempo={tempo} updateTempo={updateTempo}/>
+                                </div>
+                            </div>
 
-                <div className="row">
-                <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                    <ProcessTextArea textValue={songText} onTextChange={handleTextChange}/>
+                            <PreprocessorControls channelsEnabled={channelsEnabled} onChannelChange={handleChannelChange}/>
+                            <SaveLoadControls currentSettings={currentSettings} onLoadSettings={handleLoadSettings}/>
+                        </div>
+
+                        {/* D3 Visualization */}
+                        <div className="d3-wrapper">
+                            <D3GraphVisualizer />
+                        </div>
                     </div>
 
-                    <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto', marginTop: 30, marginBottom: 50 }}> 
-                        <div id="editor" />
-                        <div id="output" />
+                    {/* Code Editors */}
+                    <div className="col-lg-6 right-column">
+                        {/* Textarea */}
+                        <div className="textarea-section">
+                            <h5 className="section-header">Text to preprocess</h5>
+                            <div className="textarea-wrapper">
+                                <ProcessTextArea 
+                                    textValue={songText} 
+                                    onTextChange={handleTextChange}
+                                />
+                            </div>
+                        </div>
+
+                        {/* Strudel Editor */}
+                        <div className="editor-section">
+                            <h5 className="section-header">Live Editor</h5>
+                            <div id="editor"></div>
+                        </div>
                     </div>
-                   
                 </div>
-                <div className="row">
-                    <div className="col-md-6" style={{ maxHeight: '50vh', overflowY: 'auto' }}>
-                    <ControlButtons onPlay={handlePlay} onStop={handleStop}/>
-                    <br/>
-                    <VolumeControl volume={volume} updateVolume={updateVolume}/>
-                    <PreprocessorControls   channelsEnabled={channelsEnabled}  onChannelChange={handleChannelChange}/>
-                    <TempoSelector tempo={tempo} updateTempo={updateTempo}/>
-                    <ChannelSelector/>
-                    <SaveLoadControls/>
 
-                    </div>
+                {/* Piano Roll */}
+                <div className="hidden-canvas">
+                    <canvas id="roll"></canvas>
                 </div>
             </div>
-            <canvas id="roll"></canvas>
-        </main >
-    </div >
+        </main>
+    </div>
 );
-
 }
