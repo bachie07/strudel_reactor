@@ -34,6 +34,19 @@ function D3GraphVisualizer() {
         const g = svg.append("g")
             .attr("transform", `translate(${margin.left},${margin.top})`);
     
+        // Extract amplitude from last 80 events
+        const amplitudeData = hapStrings.slice(-80).map((hapString, index) => {
+            const gainMatch = hapString.match(/gain:([\d.]+)/);
+            const postgainMatch = hapString.match(/postgain:([\d.]+)/);
+            
+            let amplitude = 1;
+            if (postgainMatch) {
+                amplitude = parseFloat(postgainMatch[1]);
+            } else if (gainMatch) {
+                amplitude = parseFloat(gainMatch[1]);
+            }
+            
+            return { index, amplitude };
         });
     
         // Create scales
