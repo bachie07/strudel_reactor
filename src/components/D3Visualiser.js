@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 function D3GraphVisualizer() {
     const svgRef = useRef();
 
-    useEffect(() => {
+    useEffect(() => { // handler function that receives data from strudel
         const handleD3Data = (event) => {
             const hapStrings = event.detail || [];
             updateVisualization(hapStrings);
@@ -16,6 +16,24 @@ function D3GraphVisualizer() {
             document.removeEventListener("d3Data", handleD3Data);
         };
     }, []);
+
+    //function to update D3 visualiation with new hap data
+    const updateVisualization = (hapStrings) => {
+        if (!svgRef.current || hapStrings.length === 0) return;
+    
+        //set dimension
+        const svg = d3.select(svgRef.current);
+        const width = 1000;
+        const height = 400;
+        const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+        const innerWidth = width - margin.left - margin.right;
+        const innerHeight = height - margin.top - margin.bottom;
+    
+        svg.selectAll("*").remove();
+    
+        const g = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+    
         });
     
         // Create scales
