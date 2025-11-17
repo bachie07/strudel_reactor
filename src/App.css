@@ -42,16 +42,156 @@
   pointer-events: none;
 }
 
-.container-fluid{
-
-
-
-}
-
 
 .body{
 
   background-color: #282c34;
+
+}
+
+#editor .cm-editor {
+  height: 100% !important;
+  max-height: 100% !important;
+  overflow: auto !important;
+}
+
+#editor .cm-scroller {
+  overflow: auto !important;
 }
 
 
+/* Main container */
+.app-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.main-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* Header */
+.app-header {
+  text-align: center;
+  margin-bottom: 15px;
+  flex: 0 0 auto;
+}
+
+.app-header h2 {
+  color: #00ff88;
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5),
+               0 0 20px rgba(0, 255, 136, 0.3);
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* Main row */
+.main-row {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Columns */
+.left-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Control panel */
+.control-panel {
+  background: rgba(13, 17, 23, 0.6) !important;
+  border-radius: 12px;
+  border: 2px solid #30363d;
+  flex: 0 0 auto;
+  max-height: 50%;
+  overflow-y: auto;
+}
+
+.control-panel h5 {
+  color: #00ff88;
+  margin-bottom: 15px;
+  font-size: 1rem;
+}
+
+/* D3 Visualization wrapper */
+.d3-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+/* Text area section */
+.textarea-section {
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea-wrapper {
+  flex: 1;
+  min-height: 0;
+}
+
+.section-header {
+  color: #00d4ff;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Editor section */
+.editor-section {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  height: 650px;
+}
+
+#editor {
+  height: calc(100% - 35px);
+  background: #0d1117;
+  border: 2px solid #30363d;
+  border-radius: 8px;
+  padding: 10px;
+  overflow: auto;
+  max-height: 100%;
+}
+
+/* Force CodeMirror editor to scroll */
+#editor .cm-editor {
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+#editor .cm-scroller {
+  overflow: auto !important;
+  max-height: 100% !important;
+}
+
+#editor .cm-content {
+  min-height: 100% !important;
+}
+
+/* Hidden canvas */
+.hidden-canvas {
+  display: none;
+}
+
+/* Control rows */
+.control-row {
+  margin-top: 0.5rem;
+}
