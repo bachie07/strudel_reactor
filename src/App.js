@@ -127,6 +127,22 @@ export default function StrudelDemo() {
     }, []);
 
 
+    const currentSettings = {
+        volume,
+        tempo,
+        channelsEnabled,
+        songText,
+        timestamp: new Date().toISOString()
+    };
+
+    const handleLoadSettings = useCallback((loadedSettings) => {
+        if (loadedSettings.volume !== undefined) setVolume(loadedSettings.volume);
+        if (loadedSettings.tempo !== undefined) setTempo(loadedSettings.tempo);
+        if (loadedSettings.channelsEnabled) setChannelsEnabled(loadedSettings.channelsEnabled);
+        if (loadedSettings.songText) setSongText(loadedSettings.songText);
+        
+        console.log("Settings loaded successfully!");
+    }, []);
 
 
 useEffect(() => {
