@@ -11,7 +11,6 @@ import { stranger_tune } from './tunes';
 import PreprocessorControls from './components/PreprocessorControls';
 import ControlButtons from  './components/ControlButtons';
 import ProcessTextArea from './components/ProcessTextArea';
-import ChannelSelector from './components/ChannelSelector';
 import TempoSelector from './components/TempoSelector';
 import VolumeControl from './components/VolumeControl';
 import console_monkey_patch, { getD3Data } from './console-monkey-patch';
