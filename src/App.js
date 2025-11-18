@@ -31,9 +31,10 @@ export default function StrudelDemo() {
 
     const tempoTimeoutRef = useRef(null) // useRef storing timeout session
 
-    const [songText, setSongText] = useState(stranger_tune) 
+    const [songText, setSongText] = useState(stranger_tune)  //storing song text state
 
-     //channelsEnabled object storing state of each instrument
+
+    //channelsEnabled object storing state of each instrument
     const [channelsEnabled, setChannelsEnabled] = useState({
             bassline: true,
             main_arp: true,
@@ -41,16 +42,16 @@ export default function StrudelDemo() {
             drums2: true
         });
 
-    const [isPlaying, setIsPlaying] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(false)  // control isPlaying state
 
-    const [volume, setVolume] = useState(1.0) 
+    const [volume, setVolume] = useState(1.0) //controlling volumne state
 
-    const [tempo, setTempo] = useState(140)
-
-
+    const [tempo, setTempo] = useState(140) // controlling tempo state
 
 
-    const handlePlay = useCallback(() => {
+
+    // pass as porps to Controll buttons component
+    const handlePlay = useCallback(() => {  // useCallback prevents recreating function on every render
 
         if (globalEditor){
 
@@ -77,7 +78,7 @@ export default function StrudelDemo() {
 
     },[songText, channelsEnabled, tempo, volume])
 
-
+    // pass as props to ControlButtons component
     const handleStop = useCallback(() => {
 
         if (globalEditor){
@@ -93,16 +94,16 @@ export default function StrudelDemo() {
     
 
     // Handle text changes
-    const handleTextChange = useCallback((e) => {
+    const handleTextChange = (e) => {
         const newText = setSongText(e.target.value);
     
         if (globalEditor) {
             globalEditor.setCode(newText);
         }
-    }, []);
+    };
 
 
-
+    // pass as prop to volume control component
     const updateVolume = useCallback((e) => {
 
         const newVolume = parseFloat(e.target.value);
@@ -111,6 +112,7 @@ export default function StrudelDemo() {
 
     }, [])
 
+    // pass as prop to tempo control component
     const updateTempo = useCallback((e) => {
 
         const newTempo = parseFloat(e.target.value);
@@ -119,6 +121,7 @@ export default function StrudelDemo() {
     })
 
 
+    // pass as prop to PreprocessrControl component
     const handleChannelChange = useCallback((channelName, enabled) => { // change instrument state to true to onChange called 
         setChannelsEnabled(prev => ({
             ...prev,
@@ -127,6 +130,7 @@ export default function StrudelDemo() {
     }, []);
 
 
+    // storing current settings for saving json 
     const currentSettings = {
         volume,
         tempo,
@@ -135,7 +139,8 @@ export default function StrudelDemo() {
         timestamp: new Date().toISOString()
     };
 
-    const handleLoadSettings = useCallback((loadedSettings) => {
+    //pass as props to SaveLoadControls component
+    const handleLoadSettings = useCallback((loadedSettings) => { // update all states with the loaded settings gile
         if (loadedSettings.volume !== undefined) setVolume(loadedSettings.volume);
         if (loadedSettings.tempo !== undefined) setTempo(loadedSettings.tempo);
         if (loadedSettings.channelsEnabled) setChannelsEnabled(loadedSettings.channelsEnabled);
@@ -212,6 +217,7 @@ useEffect(() => {
 }, [tempo, isPlaying, songText, channelsEnabled, volume]); // only called when dependancies change 
 
 
+//container return each section
 return (
     <div className="app-container">
         <main>

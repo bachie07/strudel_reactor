@@ -23,8 +23,8 @@ function D3GraphVisualizer() {
     
         //set dimension
         const svg = d3.select(svgRef.current);
-        const width = 1050;
-        const height = 580;
+        const width = 1020;
+        const height = 550;
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
@@ -128,7 +128,7 @@ function D3GraphVisualizer() {
             <svg 
                 ref={svgRef} 
                 width="1020" 
-                height="580"
+                height="550"
                 style={{ 
                     background: '#0d1117', 
                     border: '2px solid #00ff88',

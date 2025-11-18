@@ -1,4 +1,8 @@
+import { useState } from 'react'; 
+
 function SaveLoadControls({ currentSettings, onLoadSettings }) {
+
+    const [filename, setFilename] = useState('');
 
     const handleSave = () => {
         const settingsJSON = JSON.stringify(currentSettings, null, 2);
@@ -7,7 +11,7 @@ function SaveLoadControls({ currentSettings, onLoadSettings }) {
         
         const link = document.createElement('a');
         link.href = url;
-        link.download = `strudel-settings-${Date.now()}.json`;
+        link.download = filename || `strudel-settings-${Date.now()}.json`;
         link.click();
         
         URL.revokeObjectURL(url);
@@ -29,23 +33,34 @@ function SaveLoadControls({ currentSettings, onLoadSettings }) {
         reader.readAsText(file);
     };
 
+        // bootstrap html section 
     return (
         <div className="mt-3">
-            <h5>Save/Load Settings</h5>
-            <div className="btn-group" role="group">
-                <button className="btn btn-success" onClick={handleSave}>
-                    💾 Save
-                </button>
-                <label className="btn btn-info" htmlFor="load-file">
-                    📁 Load
-                </label>
-                <input
-                    type="file"
-                    id="load-file"
-                    accept=".json"
-                    style={{ display: 'none' }}
-                    onChange={handleLoad}
+            <h6 style={{color: '#00d4ff', marginBottom: '10px'}}>Settings</h6>
+        
+            <label htmlFor="load-file" className="form-label" style={{fontSize: '0.9rem', color: '#e0e0e0'}}>
+                Load Settings
+            </label>
+            <input 
+                className="form-control form-control-sm" 
+                type="file" 
+                id="load-file"
+                accept=".json"
+                onChange={handleLoad}
+            />
+            
+
+            <div className="input-group input-group-sm mt-2">
+                <input 
+                    type="text" 
+                    className="form-control" 
+                    placeholder="Enter filename..."
+                    value={filename}
+                    onChange={(e) => setFilename(e.target.value)}
                 />
+                <button className="btn btn-success" onClick={handleSave}>
+                    Save
+                </button>
             </div>
         </div>
     );
