@@ -23,7 +23,7 @@ function D3GraphVisualizer() {
     
         //set dimension
         const svg = d3.select(svgRef.current);
-        const width = 1020;
+        const width = 1150;
         const height = 550;
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const innerWidth = width - margin.left - margin.right;
@@ -127,7 +127,7 @@ function D3GraphVisualizer() {
             <h5 className="d3-title">Real-Time Amplitude Visualization</h5>
             <svg 
                 ref={svgRef} 
-                width="1020" 
+                width="1150" 
                 height="550"
                 style={{ 
                     background: '#0d1117', 

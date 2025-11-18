@@ -1,73 +1,36 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Controls Summary:
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Play Button - Starts playing the music with current settings and preprocessed code
+Stop Button - Stops the music playback
+Volume Slider - Adjusts master volume (0.1x to 2.0x multiplier) by scaling all gain values in the code
+BPM Input - Sets the tempo/speed of the music (60-200 BPM)
+Channel Switches (Main_arp, Bassline, Drums, Drums 2) - Toggle individual instrument channels on/off by adding/removing underscore prefix to mute them
+Load Settings - Upload a JSON file to restore saved volume, tempo, channel states, and code
+Save Settings - Download current settings (volume, tempo, channels, code) as a JSON file with custom filename
+Text Editor (left) - Edit the original Strudel code before preprocessing
+Live Editor (right) - Shows the preprocessed code that's actually being played
+D3 Waveform - Real-time visualization of audio amplitude from the last 80 events
 
 
-test commmit 
+Boostraps:
+Most boostraps are v5.3 
+https://getbootstrap.com/docs/5.3/getting-started/introduction/
+
+
+Link to video:
+https://www.loom.com/share/c4dc03004c4c4520ad16fdf981a248bc
+
+AI tools used:
+
+Claude.AI
+
+Issue Faced : Child components were re-rendering unnecessarily when parent state changed, causing performance issues with frequently-updated controls like volume and tempo which caused breaking
+(Prompt: Why is my volume breaking and lags despite the user range volume value is being updated correctly)
+AI Help: Claude AI explained that functions recreated on every render cause child re-renders when passed as props. Recommended using useCallback to memoize functions and create stable references, 
+which helped with performance and reduce lag with my function
+
+
+
+
+
