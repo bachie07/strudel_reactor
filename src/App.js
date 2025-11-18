@@ -228,19 +228,30 @@ return (
                         <div className="control-panel p-3 mb-3">
                             <h5>Controls</h5>
                             
-                            <ControlButtons onPlay={handlePlay} onStop={handleStop}/>
-                            
-                            <div className="row control-row">
-                                <div className="col-md-6">
+                          
+                            <ControlButtons onPlay={handlePlay} onStop={handleStop}/>          
+                   
+                            <div className="row mt-3 g-2">
+                                <div className="col-6">
                                     <VolumeControl volume={volume} updateVolume={updateVolume}/>
                                 </div>
-                                <div className="col-md-6">
+                                <div className="col-6">
                                     <TempoSelector tempo={tempo} updateTempo={updateTempo}/>
                                 </div>
                             </div>
 
-                            <PreprocessorControls channelsEnabled={channelsEnabled} onChannelChange={handleChannelChange}/>
-                            <SaveLoadControls currentSettings={currentSettings} onLoadSettings={handleLoadSettings}/>
+                            <div className="mt-3">
+                                <h6 style={{color: '#00d4ff', marginBottom: '10px'}}>Channels</h6>
+                                <PreprocessorControls 
+                                    channelsEnabled={channelsEnabled} 
+                                    onChannelChange={handleChannelChange}
+                                />
+                            </div>
+                        
+                            <SaveLoadControls 
+                                currentSettings={currentSettings}
+                                onLoadSettings={handleLoadSettings}
+                            />
                         </div>
 
                         {/* D3 Visualization */}

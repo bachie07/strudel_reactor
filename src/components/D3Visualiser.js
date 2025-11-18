@@ -23,8 +23,8 @@ function D3GraphVisualizer() {
     
         //set dimension
         const svg = d3.select(svgRef.current);
-        const width = 1000;
-        const height = 400;
+        const width = 1050;
+        const height = 580;
         const margin = { top: 20, right: 20, bottom: 20, left: 20 };
         const innerWidth = width - margin.left - margin.right;
         const innerHeight = height - margin.top - margin.bottom;
@@ -105,15 +105,30 @@ function D3GraphVisualizer() {
             .attr("stroke", "#00ff88")
             .attr("stroke-width", 3)
             .attr("d", line);
-    };
+        
+        //X-axis
+        const xAxis = d3.axisBottom(xScale).ticks(10);
+            g.append("g")
+            .attr("transform", `translate(0,${innerHeight})`)
+            .call(xAxis)
+            .attr("color", "#00d4ff")
+    .       style("font-size", "12px");
+
+      // Y-axis
+        const yAxis = d3.axisLeft(yScale).ticks(5);
+            g.append("g")
+            .call(yAxis)
+            .attr("color", "#00d4ff")
+            .style("font-size", "12px");
+            };
 
     return (
         <div className="mt-3">
             <h5 className="d3-title">Real-Time Amplitude Visualization</h5>
             <svg 
                 ref={svgRef} 
-                width="1000" 
-                height="400"
+                width="1020" 
+                height="580"
                 style={{ 
                     background: '#0d1117', 
                     border: '2px solid #00ff88',

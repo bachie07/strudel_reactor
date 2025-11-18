@@ -5,11 +5,9 @@ function ControlButtons( { onPlay, onStop, onProcess, onProcessAndPlay }){
     return (
         <nav>
             <div className="row"> 
-                <div className="col-auto">
-                    <button id="play" className="btn btn-outline-primary" onClick={onPlay}>Play</button>
-                </div>
-                <div className="col-auto">
-                <button id="stop" className="btn btn-outline-danger" onClick={onStop}>Stop</button>
+                <div className="d-flex gap-2">
+                    <button id="play" className="btn btn-primary flex-fill" onClick={onPlay} style={{ padding: '15px', fontSize: '1.1rem' }}>Play</button>
+                <button id="stop" className="btn btn-primary flex-fill"onClick={onStop} style={{ padding: '15px', fontSize: '1.1rem' }}>Stop</button>
                 </div>
 
             </div>
